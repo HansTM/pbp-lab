@@ -49,5 +49,5 @@ jobs:
         # Assuming you are not using custom domain on Heroku, the target_url
         # will contain the URL to your application hosted under Heroku's
         # subdomain.
-        enviroment_url: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com
+        environment-url: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com
         environment: production
