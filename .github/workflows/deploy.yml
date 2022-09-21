@@ -44,7 +44,7 @@ jobs:
     - name: Create GitHub deployment
       uses: chrnorm/deployment-action@v2
       with:
-        initial_status: success
+        initial-status: success
         token: ${{ github.token }}
         # Assuming you are not using custom domain on Heroku, the target_url
         # will contain the URL to your application hosted under Heroku's
