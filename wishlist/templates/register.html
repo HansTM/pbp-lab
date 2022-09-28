@@ -1,34 +1,53 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-<title>Registrasi Akun</title>
+<title>Pendaftaran • Hans TM @ Lab PBP</title>
 {% endblock meta %}
 
-{% block content %}  
+{% block content %}
+{% include 'navbar.html' %}
 
-<div class = "login">
-    
-    <h1>Formulir Registrasi</h1>  
+<div class="container">
 
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
-        </form>
+	<h1 class="mt-3 mb-3">Pendaftaran</h1>
 
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
+	{% if messages %}
+	<div class="alert alert-primary mb-3">
+		<ul class="mb-0">
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
 
-</div>  
+	<form method="POST" class="mb-3">
+		{% csrf_token %}
+		<div class="mb-3">
+			<label for="inputUserName" class="form-label">Username</label>
+			<input type="text" name="username" id="inputUserName" class="form-control mb-2" required>
+			<p class="small">150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+		</div>
+		<div class="mb-3">
+			<label for="inputPassword" class="form-label">Password</label>
+			<input type="password" name="password1" id="inputPassword" class="form-control mb-2" required>
+			<ul class="small">
+				<li>Your password can’t be too similar to your other personal information.</li>
+				<li>Your password must contain at least 8 characters.</li>
+				<li>Your password can’t be a commonly used password.</li>
+				<li>Your password can’t be entirely numeric.</li>
+			</ul>
+		</div>
+		<div class="mb-3">
+			<label for="inputPasswordConfirm" class="form-label">Password confirmation</label>
+			<input type="password" name="password2" id="inputPasswordConfirm" class="form-control mb-2" required>
+			<p class="small">Enter the same password as before, for verification.</p>
+		</div>
+		<button class="btn btn-primary" type="submit">Daftar</button>
+	</form>
+
+	<p>Sudah mempunyai akun? <a href="{% url 'wishlist:login' %}">Masuk</a>.</p>
+
+</div>
 
 {% endblock content %}
