@@ -1,12 +1,16 @@
+import json
 from django.shortcuts import render
 from wishlist.models import BarangWishlist
-from django.http import HttpResponse
+from wishlist.forms import BarangWishlistForm
+from django.http import HttpResponse, HttpResponse
 from django.core import serializers
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.admin.views.decorators import staff_member_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -81,3 +85,25 @@ def logout_user(request):
 	# response.delete_cookie('last_login')
 	messages.info(request, 'Anda telah berhasil keluar!')
 	return response
+
+def show_wishlist_ajax(request):
+
+	context = {
+		'nama': 'Bapak H',
+	}
+
+	return render(request, "wishlist_ajax.html", context)
+
+@login_required
+@staff_member_required
+def add_barang(request):
+	form = BarangWishlistForm()
+
+	if request.method == "POST":
+		form = BarangWishlistForm(json.loads(request.body))
+		if form.is_valid():
+			form.save()
+			return HttpResponse(status=201)
+		return HttpResponse(status=400)
+
+	return HttpResponse(status=400)

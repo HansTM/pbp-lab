@@ -21,19 +21,23 @@
 	{% endif %}
 
 	<table class="table table-striped">
-		<tr>
-			<th>Nama Barang</th>
-			<th>Harga Barang</th>
-			<th>Deskripsi</th>
-		</tr>
+		<thead>
+			<tr>
+				<th>Nama Barang</th>
+				<th>Harga Barang</th>
+				<th>Deskripsi</th>
+			</tr>	
+		</thead>
 		{% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-		{% for barang in list_barang %}
-		<tr>
-			<td>{{barang.nama_barang}}</td>
-			<td>{{barang.harga_barang}}</td>
-			<td>{{barang.deskripsi}}</td>
-		</tr>
-		{% endfor %}
+		<tbody>
+			{% for barang in list_barang %}
+			<tr>
+				<td>{{barang.nama_barang}}</td>
+				<td>{{barang.harga_barang}}</td>
+				<td>{{barang.deskripsi}}</td>
+			</tr>
+			{% endfor %}	
+		</tbody>
 	</table>
 
 </div>
