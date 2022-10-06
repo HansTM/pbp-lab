@@ -19,8 +19,9 @@ const loadTable = async () => {
 	})
 }
 
+const formEl = document.querySelector("#addForm")
 const submitEl = document.querySelector("#addModalSubmit")
-submitEl.addEventListener("click", async event => {
+formEl.addEventListener("submit", async event => {
 	event.preventDefault()
 	submitEl.disabled = true
 	const data = {
@@ -38,6 +39,10 @@ submitEl.addEventListener("click", async event => {
 	})
 	loadTable()
 	submitEl.disabled = false
+	submitEl.textContent = "✅"
+	setTimeout(() => {
+		submitEl.textContent = "Tambah"
+	}, 1000)
 })
 
 loadTable()

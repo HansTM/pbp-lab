@@ -3,8 +3,8 @@
 
 {% block meta %}
 <title>Wishlist • Hans TM @ Lab PBP</title>
+<script>window.CSRF_TOKEN = "{{ csrf_token }}"</script>
 <script src="{% static 'js/wishlist_ajax.js' %}" defer></script>
-<script type="text/javascript">window.CSRF_TOKEN = "{{ csrf_token }}"</script> 
 {% endblock meta %}
 
 {% block content %}
@@ -79,7 +79,7 @@
 				<h1 class="modal-title fs-5" id="addModalLabel">Tambah Barang</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<form>
+			<form id="addForm">
 				{% csrf_token %}
 				<div class="modal-body">
 					<div class="mb-3">
@@ -96,7 +96,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" id="addModalSubmit">Submit</button>
+					<button type="submit" class="btn btn-primary" id="addModalSubmit">Tambah</button>
 				</div>
 			</form>
 		</div>
